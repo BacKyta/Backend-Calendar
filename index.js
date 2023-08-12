@@ -19,6 +19,10 @@ app.use(cors());
 // Directorio Publico
 app.use( express.static('public') );
 
+app.get('/', (req, res) => {
+  // La ruta principal ahora servirá el archivo "index.html" de la carpeta "public"
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 //Lectura y parseo del body
 app.use( express.json() );
