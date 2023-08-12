@@ -3,6 +3,7 @@ const Event = require('../models/Event');
 const User = require('../models/User');
 
 
+
 const getEvents = async (req, res = response) =>{
 
   // console.log(req);
@@ -13,6 +14,8 @@ const getEvents = async (req, res = response) =>{
 
   // console.log(user);
 
+  
+  
   const events = await Event.find({user: user}).populate('user','name');
 
   //* se debe especificar la referencia que se quiere rellenar, porque puede que se tenga varias referencias

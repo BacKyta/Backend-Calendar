@@ -19,6 +19,8 @@ app.use(cors());
 // Directorio Publico
 app.use( express.static('public') );
 
+//? Puede haber problemas de archivos estaticos, por eso se debe servir de manera explicita
+
 app.get('/', (req, res) => {
   // La ruta principal ahora servirá el archivo "index.html" de la carpeta "public"
   res.sendFile(__dirname + '/public/index.html');
