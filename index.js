@@ -36,6 +36,7 @@ app.use( express.json() );
 //* su contenido
 
 
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
