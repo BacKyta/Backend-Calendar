@@ -17,7 +17,15 @@ app.use(cors());
 
 
 // Directorio Publico
-app.use( express.static('public'));
+app.use( express.static('public', {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    } else if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+  }
+}));
   
 
 // //? Puede haber problemas de archivos estaticos, por eso se debe servir de manera explicita
