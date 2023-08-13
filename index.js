@@ -17,23 +17,15 @@ app.use(cors());
 
 
 // Directorio Publico
-app.use( express.static('public',
-  {
-    setHeaders: (res, path) => {
-      if (path.endsWith('.css')) {
-        res.setHeader('Content-Type', 'text/css');
-      } else if (path.endsWith('.js')) {
-        res.setHeader('Content-Type', 'application/javascript');
-      }
-    }
-  }));
+app.use( express.static('public'));
+  
 
 // //? Puede haber problemas de archivos estaticos, por eso se debe servir de manera explicita
 
-// app.get('/', (req, res) => {
-//   // La ruta principal ahora servirá el archivo "index.html" de la carpeta "public"
-//   res.sendFile(__dirname + '/public/index.html');
-// });
+app.get('/', (req, res) => {
+  // La ruta principal ahora servirá el archivo "index.html" de la carpeta "public"
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 //Lectura y parseo del body
 app.use( express.json() );
