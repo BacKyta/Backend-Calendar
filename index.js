@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const { dbConection } = require('./db/config');
 const cors = require('cors');
+const path = require('path');
 
 //Crear el sevidor de express
 const app = express();
@@ -17,15 +18,8 @@ app.use(cors());
 
 
 // Directorio Publico
-app.use( express.static('public', {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css');
-    } else if (path.endsWith('.js')) {
-      res.setHeader('Content-Type', 'application/javascript');
-    }
-  }
-}));
+
+app.use( express.static('public'));
   
 
 // //? Puede haber problemas de archivos estaticos, por eso se debe servir de manera explicita
@@ -45,6 +39,7 @@ app.use( express.json() );
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
+app.get('/*', (req, res) => { res.sendFile(path.resolve(__dirname, './public', 'index.html'));});
 
 //TODO: CRUD: Eventos
 
