@@ -35,8 +35,8 @@ app.use( express.static('public',
 //   res.sendFile(__dirname + '/public/index.html');
 // });
 
-// //Lectura y parseo del body
-// app.use( express.json() );
+//Lectura y parseo del body
+app.use( express.json() );
 
 //* las peticiones que vengan en formato json se van a procesar en este midelware y se va extraer 
 //* su contenido
