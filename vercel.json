@@ -7,10 +7,9 @@
         }
     ],
     "routes":[
-        
-        { "src": "/public/(.*)", "dest": "/public/$1" },
-        { "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|json))", "dest": "/public/$1" },
-        { "src": "/(.*)", "dest": "/index.js" }
-        
+        {
+            "src":"/(.*)",
+            "dest":"/"
+        }
     ]
 }
