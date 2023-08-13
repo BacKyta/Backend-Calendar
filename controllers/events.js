@@ -1,30 +1,38 @@
 const { response } = require('express');
 const Event = require('../models/Event');
-const User = require('../models/User');
+// const User = require('../models/User');
 
 
 
 const getEvents = async (req, res = response) =>{
 
-  // console.log(req);
-
-  let user =  User.findById(req.uid); 
+  // console.log(req.uid);
   
-  // const { user } = req.body;
+  try {
+    // const { user } = req.body;
+    // console.log({xd: user.name});
+    //* Para mostrar todos los eventos por usuario solamente
+    
+    // let user =  await User.findById(req.uid); 
 
-  // console.log(user);
+    const events = await Event.find(/* {user: user} */).populate('user','name');
 
+    //* con populate seteamos el user a la respuesta el id siempre viene.
+    //* se debe especificar la referencia que se quiere rellenar, porque puede que se tenga varias referencias
+    //* en el mismo documento.
   
-  
-  const events = await Event.find({user: user}).populate('user','name');
+    res.json({
+      ok:true,
+      events
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg:'Hable con el administrador'
+    });
+  }
 
-  //* se debe especificar la referencia que se quiere rellenar, porque puede que se tenga varias referencias
-  //* en el mismo documento.
-
-  res.json({
-    ok:true,
-    events
-  });
 };
 
 
