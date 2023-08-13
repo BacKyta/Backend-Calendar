@@ -2,7 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const { dbConection } = require('./db/config');
 const cors = require('cors');
-// const path = require('path');
+const path = require('path');
 
 //Crear el sevidor de express
 const app = express();
@@ -40,7 +40,7 @@ app.use( express.json() );
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 app.get('/*', (req, res) => { 
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 //TODO: CRUD: Eventos
